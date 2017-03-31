@@ -1,0 +1,25 @@
+body {
+    margin: 30px
+}
+
+h2 {
+    text-align: center;
+}
+
+div {
+    background-color: beige;
+    border-style: dotted;
+    border-color: #666;
+    padding: 4px;
+}
+
+pre {
+    padding: 4px;
+    width: 80em;
+    font: monospace;
+    text-align: left;
+    background-color: #666;
+    color: #f1f1f1;
+}
+
+
