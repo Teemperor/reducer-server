@@ -96,6 +96,11 @@ class UploadJob:
             self.running = False
             #self.job_process.wait()
             os.remove(self.running_file)
+            try:
+                shutil.copyfile(run_dir + "/.log", log_dir + "/" + self.filename + ".html")
+            except:
+                pass
+
             subprocess.call(["sudo", "-u", reduce_user, "bash",
                       "/var/reducing/data/pkg.sh", run_dir + "/result.zip"])
             shutil.move(run_dir + "/result.zip", self.output_path)
@@ -177,19 +182,19 @@ def generate_job_report(job, out):
             out.write('  <progress></progress>\n')
         else:
             out.write('  <progress value="' + str(reduction) + '" max="100"></progress>\n')
-        out.write("  <p>Output:</p>\n")
-        out.write("  <pre>\n")
         if len(lines) > 30:
             lines = lines[-30:]
-
+        out.write("<pre>\n")
         for line in lines:
             out.write(line)
+        out.write("</pre>\n")
 
-        out.write("  </pre>\n")
     else:
         out.write('<p class="size_str">Size: ' + job.orig_size_str + '</p>\n')
     if job.job_done:
         out.write('<a href="out/' + job.filename + '">Download result</a>\n')
+        out.write('<a href="logs/' + job.filename + '.html">See output</a>\n')
+
     if not job.running:
         out.write('<a href="delete.php?file=' + job.filename + '">Remove job</a>\n')
 
