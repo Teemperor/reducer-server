@@ -6,7 +6,15 @@ h2 {
     text-align: center;
 }
 
-div {
+.size_str {
+    display: inline;
+}
+
+h3 {
+    display: inline;
+}
+
+.job_div {
     background-color: beige;
     border-style: dotted;
     border-color: #666;
@@ -15,7 +23,6 @@ div {
 
 pre {
     padding: 4px;
-    width: 80em;
     font: monospace;
     text-align: left;
     background-color: #666;

@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><html>
+<head>
+  <link rel="stylesheet" type="text/css" href="theme.css">
+  <script src="jquery-3.2.0.min.js"></script>  <script>
+$(function() {
+    startRefresh();
+});
+
+oldData = ""
+
+function startRefresh() {
+    setTimeout(startRefresh,400);
+    $.get('content.html', function(data) {
+        if (oldData !== data) {
+            oldData = data;
+            console.log(data);
+            $('#main').html(data);
+        }
+    });
+}
+
+</script></head>
+<body>
+<form action="upload.php" method="post" enctype="multipart/form-data">
+    Select zip file that contains a new job (top-level test.sh file):
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Start job" name="submit">
+</form>
+
+  <div id="main">
+  <h1> Loading... <h2>
+  <progress></progress>
+  </div>
+</body>
+</html>
